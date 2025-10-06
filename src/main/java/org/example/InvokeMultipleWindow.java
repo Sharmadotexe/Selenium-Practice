@@ -1,15 +1,16 @@
 package org.example;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WindowType;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.Set;
 
 public class InvokeMultipleWindow {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         WebDriver driver = new ChromeDriver();
         driver.get("https://rahulshettyacademy.com/angularpractice/");
 
@@ -29,7 +30,11 @@ public class InvokeMultipleWindow {
         String abcd =driver.findElements(By.cssSelector("a[href*='https://courses.rahulshettyacademy.com/p']")).get(1).getText();
         System.out.println(abcd);
         driver.switchTo().window(parentID);
-        driver.findElement(By.name("name")).sendKeys(abcd);
+        WebElement ele = driver.findElement(By.name("name"));
+        ele.sendKeys(abcd);
+
+        File file =  ele.getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(file, new File("logo.png"));
 
 
 
