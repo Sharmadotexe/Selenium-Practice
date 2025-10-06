@@ -33,12 +33,12 @@ public class InvokeMultipleWindow {
         WebElement ele = driver.findElement(By.name("name"));
         ele.sendKeys(abcd);
 
-        File file =  ele.getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(file, new File("logo.png"));
+//        File file =  ele.getScreenshotAs(OutputType.FILE);
+//        FileUtils.copyFile(file, new File("logo.png"));
 
 
-
-
-
+        //getting height and width
+        System.out.println(ele.getRect().getDimension().getHeight());
+        System.out.println(ele.getRect().getDimension().getWidth());
     }
 }
